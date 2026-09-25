@@ -47,10 +47,10 @@ export function LandingContent() {
             src="/images/hero-farm.png"
             alt="Agricultural field at sunrise"
             fill
-            className="object-cover opacity-15 dark:opacity-10"
+            className="object-cover opacity-60 dark:opacity-50"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/35 to-background/5" />
         </div>
         <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-24 sm:py-32">
           <span className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-sm font-medium text-primary">
