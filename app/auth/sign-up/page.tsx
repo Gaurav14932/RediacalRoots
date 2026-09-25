@@ -178,8 +178,9 @@ export default function Page() {
       })
       if (error) throw error
       router.push('/auth/sign-up-success')
-    } catch {
-      setError('Unable to complete sign-up. Please try again.')
+    } catch (error) {
+      console.error('Sign-up error:', error)
+      setError(signUpErrorMessage(error))
     } finally {
       setIsLoading(false)
     }

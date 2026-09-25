@@ -79,8 +79,9 @@ export async function createClient() {
     }
   }
 
-  // If using live Supabase with real backend, let realSupabase handle it unless it fails
-  if (!isPlaceholder) {
+  // Demo sessions use the in-memory store even when production Supabase is
+  // configured. Registered users continue through the real Supabase client.
+  if (!isPlaceholder && !demoModeCookie) {
     return realSupabase
   }
 
