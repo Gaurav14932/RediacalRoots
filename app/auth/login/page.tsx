@@ -77,12 +77,34 @@ function LoginForm() {
         email,
         password,
       })
-      if (error) throw error
+
+      if (error) {
+        const authError = error as { code?: string; message?: string }
+        const isInvalidCredentials =
+          authError.code === 'invalid_credentials' ||
+          authError.message?.toLowerCase() === 'invalid login credentials'
+
+        // Demo accounts are intentionally kept in the local mock store and do
+        // not need matching Supabase users in the deployed preview.
+        if (isInvalidCredentials) {
+          const { loginDemoFallback } = await import('@/app/auth/actions')
+          const fallback = await loginDemoFallback(email)
+          if (fallback.success) {
+            window.location.href =
+              searchParams.get('redirect') || fallback.redirect || '/dashboard'
+            return
+          }
+        }
+
+        throw error
+      }
+
       const redirect = searchParams.get('redirect')
       router.push(redirect || '/dashboard')
       router.refresh()
-    } catch {
-      setError('Invalid email or password.')
+    } catch (error) {
+      console.error('Login error:', error)
+      setError(loginErrorMessage(error))
     } finally {
       setIsLoading(false)
     }
