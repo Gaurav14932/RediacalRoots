@@ -44,7 +44,7 @@ export function LandingContent() {
       <section className="relative overflow-hidden border-b border-border/60">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/hero.jpg"
+            src="/images/hero-farm.png"
             alt="Agricultural field at sunrise"
             fill
             className="object-cover opacity-15 dark:opacity-10"
